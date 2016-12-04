@@ -1,0 +1,17 @@
+<mvc:View
+        controllerName="leverx.sap.gnatyk.Map.controller.NotFound"
+        xmlns:mvc="sap.ui.core.mvc"
+        xmlns="sap.m">
+    <MessagePage
+            title="ERROR PAGE"
+            text="Page not found"
+            icon="{sap-icon://document}"
+            id="page"
+            description=""
+            showNavButton="true"
+            navButtonPress="onNavBack">
+        <customDescription>
+            <Link id="link" text="Go to product" press="onLinkPressed" />
+        </customDescription>
+    </MessagePage>
+</mvc:View>

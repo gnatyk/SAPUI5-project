@@ -1,0 +1,118 @@
+<mvc:View
+        controllerName="leverx.sap.gnatyk.Map.controller.Table"
+         xmlns:l="sap.ui.layout"
+        xmlns:mvc="sap.ui.core.mvc"
+        xmlns="sap.m">
+
+    <Page
+            enableScrolling="true"
+            title="Products">
+
+        <Table
+                id="table"
+                mode="MultiSelect"
+                selectionChange="onSelectionChange"
+                width="auto"
+                class="sapUiResponsiveMargin"
+                items="{
+					path: '/Products',
+					parameters : {
+					    expand:'Reviews'
+					    },
+					sorter: {
+						path: 'Id',
+						descending: false
+						}
+					}"
+                noDataText="No data"
+                growing="true"
+                growingScrollToLoad="false">
+            <headerToolbar>
+                <OverflowToolbar id="otb1">
+                    <Label text="Actions:" />
+                    <ToolbarSpacer />
+                    <Button text="Go to supplier mode" type="Transparent" press="goToSupplierMode" />
+                    <Button text="Go to unit tests page" type="Transparent" press="goToTestPage" />
+                </OverflowToolbar>
+            </headerToolbar>
+
+            <columns>
+                <Column
+                        width="12em">
+                    <Text text="Name" />
+                </Column>
+
+                <Column
+                        width="10em"
+                        minScreenWidth="Tablet"
+                        demandPopin="true">
+                    <Text text="Supplier" />
+                </Column>
+                <Column
+                        minScreenWidth="Tablet"
+                        demandPopin="true"
+                        hAlign="Right">
+                    <Text text="Description" />
+                </Column>
+                <Column
+                        width="5em"
+                        hAlign="Right">
+                    <Text text="Price" />
+                </Column>
+
+                <Column
+                        width="12em"
+                        hAlign="Right">
+                    <Text text="Rating" />
+                </Column>
+
+                <Column
+                        width="8em"
+                        hAlign="Right">
+                    <Text text="" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem
+                        type="Navigation"
+                        press="goToSupplierPage">
+                    <cells>
+                        <ObjectIdentifier
+                                title="{Name}"
+                                text="{Id}"/>
+                        <Text
+                                text="{SupplierName}"/>
+
+                        <Text
+                                text="{Description}"/>
+
+                        <Text
+                                text="{Price}"/>
+
+                        <RatingIndicator maxValue="5" value="{
+                                                parts: [
+                                                    { path: 'AverageRating'}
+                                                ],
+                                                formatter: '.formatter.Value'
+                                            }"/>
+
+                        <Button
+                                text="Reviews"
+                                class="sapUiSmallMarginBottom"
+                                press="onShowListComment"/>
+                    </cells>
+                </ColumnListItem>
+            </items>
+
+        </Table>
+        <footer>
+            <OverflowToolbar id="otbFooter">
+                <ToolbarSpacer/>
+                 <OverflowToolbarButton id="deleteBtn" text="Delete"  icon="sap-icon://delete" press = "onPressDelete"/>
+                 <OverflowToolbarButton id="addBtn" text="Add" type="Default" icon="sap-icon://add" press = "onPressAdd"/>
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>
+
+
